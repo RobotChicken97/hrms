@@ -1,25 +1,51 @@
 <template>
 	<ion-page>
-		<ion-content class="ion-padding">
-			<div class="flex flex-col h-screen w-screen">
+		<ion-content class="ion-padding surface-page">
+			<div class="surface-page flex flex-col h-screen w-screen">
 				<div class="w-full sm:w-96">
 					<header
-						class="flex flex-row bg-white shadow-sm py-4 px-3 items-center justify-between border-b sticky top-0 z-10"
+						class="surface-header sticky top-0 z-10 flex flex-row items-center justify-between border-b px-3 py-4 shadow-sm"
 					>
 						<div class="flex flex-row items-center">
 							<Button
 								variant="ghost"
-								class="!pl-0 hover:bg-white"
+								class="!pl-0"
 								@click="router.back()"
 							>
 								<FeatherIcon name="chevron-left" class="h-5 w-5" />
 							</Button>
-							<h2 class="text-xl font-semibold text-gray-900">{{ __("Settings") }} </h2>
+							<h2 class="text-xl font-semibold hrms-text">{{ __("Settings") }} </h2>
 						</div>
 					</header>
 
 					<div class="flex flex-col gap-5 my-4 w-full p-4">
-						<div class="flex flex-col bg-white rounded">
+						<div class="surface-card overflow-hidden rounded-2xl">
+							<div class="flex items-center justify-between gap-4 p-4">
+								<div class="flex flex-col gap-1">
+									<div class="text-base font-semibold hrms-text">
+										{{ __("Theme") }}
+									</div>
+									<div class="text-sm hrms-text-muted">
+										{{ __("Choose how {0} looks on this device.", [BRAND_CONFIG.appName]) }}
+									</div>
+								</div>
+								<select
+									v-model="themePreference"
+									class="hrms-select"
+									name="theme-preference"
+									data-testid="theme-preference"
+								>
+									<option
+										v-for="option in themeOptions"
+										:key="option.value"
+										:value="option.value"
+									>
+										{{ __(option.label) }}
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="surface-card flex flex-col rounded-2xl">
 							<Switch
 								size="md"
 								:label="__('Enable Push Notifications')"
@@ -35,8 +61,8 @@
 							v-if="isLoading"
 							class="flex -mt-2 items-center justify-center gap-2"
 						>
-							<LoadingIndicator class="w-3 h-3 text-gray-800" />
-							<span class="text-gray-900 text-sm">
+							<LoadingIndicator class="h-3 w-3 hrms-text" />
+							<span class="text-sm hrms-text">
 								{{ pushNotificationState ? __("Disabling Push Notifications...") : __("Enabling Push Notifications...") }}
 							</span>
 						</div>
@@ -55,13 +81,20 @@ import { FeatherIcon, Switch, toast, LoadingIndicator } from "frappe-ui"
 import { computed, inject, ref } from "vue"
 
 import { arePushNotificationsEnabled } from "@/data/notifications"
+import { BRAND_CONFIG } from "@brand"
+import { useTheme } from "@/theme/theme"
 
 const __ = inject("$translate")
 const router = useRouter()
+const { preference, setThemePreference, themeOptions } = useTheme()
 const pushNotificationState = ref(
 	window.frappePushNotification?.isNotificationEnabled()
 )
 const isLoading = ref(false)
+const themePreference = computed({
+	get: () => preference.value,
+	set: (value) => setThemePreference(value),
+})
 
 const disablePushSetting = computed(() => {
 	return (

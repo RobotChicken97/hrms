@@ -1,13 +1,13 @@
 <template>
-	<div class="flex p-1 bg-gray-200 rounded">
+	<div class="surface-soft flex rounded-xl p-1">
 		<button
 			v-for="button in buttons"
 			:key="button.key ?? button.label ?? button"
 			class="px-8 py-2.5 transition-all rounded-[7px] flex-auto font-medium text-base"
 			:class="
 				modelValue === (button.key ?? button.label ?? button)
-					? 'bg-white drop-shadow text-gray-900'
-					: 'text-gray-600'
+					? 'surface-card text-[var(--hrms-brand-blue)]'
+					: 'hrms-text-muted'
 			"
 			@click="$emit('update:modelValue', button.key ?? button.label ?? button)"
 		>

@@ -4,18 +4,28 @@ http://ionicframework.com/docs/theming/ */
 /** Ionic CSS Variables **/
 
 :root {
-	--ion-background-color: #f4f5f6;
+	--hrms-brand-blue: #102090;
+	--hrms-brand-blue-strong: #0b1a74;
+	--hrms-brand-blue-soft: #8ca1ff;
+	--hrms-brand-red: #f02030;
+	--hrms-background: #f6f8fc;
+	--hrms-surface: #ffffff;
+	--hrms-surface-muted: #eef2ff;
+	--hrms-text: #0f172a;
+	--hrms-text-muted: #64748b;
+	--hrms-border: #d8e0ef;
+	--ion-background-color: var(--hrms-background);
 	--ion-font-family: "InterVar", sans-serif;
-	--ion-tab-bar-color-selected: #525252;
-	--ion-tab-bar-background-focused: #e2e2e2;
+	--ion-tab-bar-color-selected: var(--hrms-brand-blue);
+	--ion-tab-bar-background-focused: #e2e8f0;
 
 	/** primary **/
-	--ion-color-primary: #3880ff;
-	--ion-color-primary-rgb: 56, 128, 255;
+	--ion-color-primary: var(--hrms-brand-blue);
+	--ion-color-primary-rgb: 16, 32, 144;
 	--ion-color-primary-contrast: #ffffff;
 	--ion-color-primary-contrast-rgb: 255, 255, 255;
-	--ion-color-primary-shade: #3171e0;
-	--ion-color-primary-tint: #4c8dff;
+	--ion-color-primary-shade: #0b1a74;
+	--ion-color-primary-tint: #3446bf;
 
 	/** secondary **/
 	--ion-color-secondary: #3dc2ff;
@@ -80,4 +90,22 @@ http://ionicframework.com/docs/theming/ */
 	--ion-color-light-contrast-rgb: 0, 0, 0;
 	--ion-color-light-shade: #d7d8da;
 	--ion-color-light-tint: #f5f6f9;
+}
+
+:root[data-theme="dark"] {
+	--hrms-background: #020817;
+	--hrms-surface: #111827;
+	--hrms-surface-muted: #172033;
+	--hrms-text: #f8fafc;
+	--hrms-text-muted: #94a3b8;
+	--hrms-border: #334155;
+	--ion-background-color: var(--hrms-background);
+	--ion-tab-bar-color-selected: #ffffff;
+	--ion-tab-bar-background-focused: #0f172a;
+	--ion-color-primary: var(--hrms-brand-blue-soft);
+	--ion-color-primary-rgb: 140, 161, 255;
+	--ion-color-primary-contrast: #020617;
+	--ion-color-primary-contrast-rgb: 2, 6, 23;
+	--ion-color-primary-shade: #7389f2;
+	--ion-color-primary-tint: #9dadff;
 }

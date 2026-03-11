@@ -2,13 +2,13 @@
 	<ion-header class="ion-no-border">
 		<div class="w-full sm:w-96">
 			<div
-				class="flex flex-row bg-white shadow-sm py-4 px-3 items-center justify-between border-b"
+				class="surface-header flex flex-row items-center justify-between border-b px-3 py-4 shadow-sm"
 			>
 				<div class="flex flex-row items-center">
-					<Button variant="ghost" class="!px-1 mr-1 hover:bg-white" @click="router.back()">
+					<Button variant="ghost" class="!px-1 mr-1" @click="router.back()">
 						<FeatherIcon name="chevron-left" class="h-5 w-5" />
 					</Button>
-					<h2 class="text-xl font-semibold text-gray-900">{{ pageTitle }}</h2>
+					<h2 class="text-xl font-semibold hrms-text">{{ pageTitle }}</h2>
 				</div>
 
 				<div class="flex flex-row gap-2">
@@ -18,7 +18,7 @@
 						variant="subtle"
 						:class="[
 							areFiltersApplied
-								? '!border !border-gray-800 !bg-white !text-gray-900 !font-semibold'
+								? '!border hrms-border surface-soft !font-semibold'
 								: '',
 						]"
 					/>
@@ -58,7 +58,7 @@
 				/>
 
 				<div
-					class="flex flex-col bg-white rounded mt-5"
+					class="surface-card mt-5 flex flex-col rounded-2xl"
 					v-if="!documents.loading && documents.data?.length"
 				>
 					<div
@@ -95,8 +95,8 @@
 				/>
 
 				<!-- Loading Indicator -->
-				<div v-if="documents.loading" class="flex mt-2 items-center justify-center">
-					<LoadingIndicator class="w-8 h-8 text-gray-800" />
+				<div v-if="documents.loading" class="mt-2 flex items-center justify-center">
+					<LoadingIndicator class="h-8 w-8 hrms-text" />
 				</div>
 			</div>
 		</div>

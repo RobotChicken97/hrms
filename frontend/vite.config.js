@@ -6,12 +6,15 @@ import frappeui from "frappe-ui/vite"
 import path from "path"
 import fs from "fs"
 
+import { BRAND_CONFIG } from "./brand.config"
+
 export default defineConfig({
 	server: {
 		port: 8080,
 		proxy: getProxyOptions(),
 	},
 	plugins: [
+		brandHtmlPlugin(),
 		vue(),
 		frappeui(),
 		VitePWA({
@@ -23,11 +26,11 @@ export default defineConfig({
 			},
 			manifest: {
 				display: "standalone",
-				name: "Frappe HR",
-				short_name: "Frappe HR",
+				name: BRAND_CONFIG.appName,
+				short_name: BRAND_CONFIG.shortName,
 				start_url: "/hrms",
-				description: "Everyday HR & Payroll operations at your fingertips",
-				theme_color: "#ffffff",
+				description: BRAND_CONFIG.description,
+				theme_color: BRAND_CONFIG.colors.lightThemeColor,
 				icons: [
 					{
 						src: "/assets/hrms/manifest/manifest-icon-192.maskable.png",
@@ -60,6 +63,7 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			"@": path.resolve(__dirname, "src"),
+			"@brand": path.resolve(__dirname, "brand.config.js"),
 		},
 	},
 	build: {
@@ -88,9 +92,21 @@ export default defineConfig({
 	},
 })
 
+function brandHtmlPlugin() {
+	return {
+		name: "amelastock-hr-brand-html",
+		transformIndexHtml(html) {
+			return html
+				.replaceAll("%BRAND_APP_NAME%", BRAND_CONFIG.appName)
+				.replaceAll("%BRAND_THEME_COLOR%", BRAND_CONFIG.colors.lightThemeColor)
+		},
+	}
+}
+
 function getProxyOptions() {
 	const config = getCommonSiteConfig()
-	const webserver_port = config ? config.webserver_port : 8000
+	const webserver_port = process.env.HRMS_PROXY_PORT || (config ? config.webserver_port : 8000)
+	const proxySiteName = process.env.HRMS_PROXY_SITE_NAME || ""
 	if (!config) {
 		console.log("No common_site_config.json found, using default port 8000")
 	}
@@ -98,10 +114,16 @@ function getProxyOptions() {
 		"^/(app|login|api|assets|files|private)": {
 			target: `http://127.0.0.1:${webserver_port}`,
 			ws: true,
+			headers: proxySiteName
+				? {
+					host: proxySiteName,
+					"x-frappe-site-name": proxySiteName,
+				}
+				: undefined,
 			router: function (req) {
-				const site_name = req.headers.host.split(":")[0]
+				const site_name = proxySiteName || req.headers.host.split(":")[0]
 				console.log(`Proxying ${req.url} to ${site_name}:${webserver_port}`)
-				return `http://${site_name}:${webserver_port}`
+				return `http://127.0.0.1:${webserver_port}`
 			},
 		},
 	}

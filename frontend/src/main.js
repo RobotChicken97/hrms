@@ -24,6 +24,7 @@ import dayjs from "@/utils/dayjs"
 import getIonicConfig from "@/utils/ionicConfig"
 
 import FrappePushNotification from "../public/frappe-push-notification"
+import { initializeTheme } from "./theme/theme"
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/vue/css/core.css"
@@ -32,6 +33,8 @@ import "@ionic/vue/css/core.css"
 import "./theme/variables.css"
 
 import "./main.css"
+
+initializeTheme()
 
 const app = createApp(App)
 const socket = initSocket()
@@ -94,7 +97,7 @@ const registerServiceWorker = async () => {
 }
 
 router.isReady().then(async () => {
-	if (import.meta.env.DEV) {
+	if (import.meta.env.DEV && !import.meta.env.VITE_HRMS_LIVE_BACKEND) {
 		await frappeRequest({
 			url: "/api/method/hrms.www.hrms.get_context_for_dev",
 		}).then(async (values) => {

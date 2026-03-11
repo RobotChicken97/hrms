@@ -1,16 +1,22 @@
 <template>
 	<ion-page>
-		<ion-content class="ion-padding">
-			<div class="flex h-screen w-screen flex-col justify-center bg-white">
-				<div class="flex flex-col mx-auto gap-3 items-center">
-					<FrappeHRLogo class="h-8 w-8" />
-					<div class="text-3xl font-semibold text-gray-900 text-center">
-						{{ __("Login to Frappe HR") }}
+		<ion-content class="ion-padding surface-page">
+			<div class="surface-page flex min-h-screen w-screen flex-col justify-center px-2 py-8">
+				<div class="mx-auto w-full max-w-sm px-4 sm:w-96">
+					<div class="flex flex-col items-center gap-3">
+						<BrandWordmark
+							:subtitle="BRAND_CONFIG.description"
+							icon-class="h-14 w-14 shrink-0 rounded-[1.6rem] object-contain"
+							title-class="text-3xl font-semibold text-center tracking-tight hrms-text"
+							subtitle-class="text-xs font-semibold uppercase tracking-[0.3em] hrms-text-muted text-center"
+						/>
+						<p class="text-center text-sm hrms-text-muted">
+							{{ __("Sign in to manage attendance, leave, salary, and requests.") }}
+						</p>
 					</div>
-				</div>
 
-				<div class="mx-auto mt-10 w-full px-8 sm:w-96">
-					<form class="flex flex-col space-y-4" @submit.prevent="submit">
+					<div class="surface-card mx-auto mt-8 w-full rounded-[1.5rem] px-6 py-7 shadow-xl">
+						<form class="flex flex-col space-y-4" @submit.prevent="submit">
 						<Input
 							:label="__('Email')"
 							:placeholder="__('johndoe@mail.com')"
@@ -29,19 +35,19 @@
 						<Button
 							:loading="session.login.loading"
 							variant="solid"
-							class="disabled:bg-gray-700 disabled:text-white !mt-6"
+							class="!mt-6 disabled:bg-gray-700 disabled:text-white hrms-primary-button"
 						>
 							{{ __("Login") }}
 						</Button>
 					</form>
 
 					<template v-if="authProviders.data?.length">
-						<div class="text-center text-sm text-gray-600 my-4">or</div>
+						<div class="my-4 text-center text-sm hrms-text-muted">or</div>
 						<div class="space-y-4">
 							<a
 								v-for="provider in authProviders.data"
 								:key="provider.name"
-								class="flex items-center justify-center gap-2 transition-colors focus:outline-none text-gray-800 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 focus-visible:ring focus-visible:ring-gray-400 h-7 text-base p-2 rounded"
+								class="surface-soft flex h-10 items-center justify-center gap-2 rounded-xl p-2 text-base transition-colors focus:outline-none hrms-text hover:opacity-90 focus-visible:ring focus-visible:ring-gray-400"
 								:href="provider.auth_url"
 							>
 								<img class="h-4 w-4" :src="provider.icon" :alt="provider.provider_name" />
@@ -49,6 +55,7 @@
 							</a>
 						</div>
 					</template>
+				</div>
 				</div>
 			</div>
 
@@ -109,7 +116,8 @@ import { IonPage, IonContent } from "@ionic/vue"
 import { inject, reactive, ref } from "vue"
 import { Input, Button, ErrorMessage, Dialog, createResource } from "frappe-ui"
 
-import FrappeHRLogo from "@/components/icons/FrappeHRLogo.vue"
+import BrandWordmark from "@/components/BrandWordmark.vue"
+import { BRAND_CONFIG } from "@brand"
 
 const email = ref(null)
 const password = ref(null)

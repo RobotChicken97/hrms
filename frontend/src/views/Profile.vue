@@ -1,20 +1,20 @@
 <template>
 	<ion-page>
-		<ion-content class="ion-padding">
-			<div class="flex flex-col h-screen w-screen">
+		<ion-content class="ion-padding surface-page">
+			<div class="surface-page flex flex-col h-screen w-screen">
 				<div class="w-full sm:w-96">
 					<header
-						class="flex flex-row bg-white shadow-sm py-4 px-3 items-center justify-between border-b sticky top-0 z-10"
+						class="surface-header sticky top-0 z-10 flex flex-row items-center justify-between border-b px-3 py-4 shadow-sm"
 					>
 						<div class="flex flex-row items-center">
 							<Button
 								variant="ghost"
-								class="!pl-0 hover:bg-white"
+								class="!pl-0"
 								@click="router.back()"
 							>
 								<FeatherIcon name="chevron-left" class="h-5 w-5" />
 							</Button>
-							<h2 class="text-xl font-semibold text-gray-900">{{ __("Profile") }}</h2>
+							<h2 class="text-xl font-semibold hrms-text">{{ __("Profile") }}</h2>
 						</div>
 					</header>
 
@@ -28,25 +28,25 @@
 						/>
 						<div
 							v-else
-							class="flex items-center justify-center bg-gray-200 uppercase text-gray-600 h-24 w-24 rounded-full object-cover"
+							class="surface-soft flex h-24 w-24 items-center justify-center rounded-full object-cover uppercase hrms-text-muted"
 						>
 							{{ user.data.first_name[0] }}
 						</div>
 
 						<div class="flex flex-col gap-1.5 items-center mt-2 mb-5">
-							<span v-if="employee" class="text-lg font-bold text-gray-900">{{
+							<span v-if="employee" class="text-lg font-bold hrms-text">{{
 								employee?.data?.employee_name
 							}}</span>
-							<span v-if="employee" class="font-normal text-sm text-gray-500">{{
+							<span v-if="employee" class="text-sm font-normal hrms-text-muted">{{
 								employee?.data?.designation
 							}}</span>
 						</div>
 
 						<!-- Profile Links -->
 						<div class="flex flex-col gap-5 my-4 w-full">
-							<div class="flex flex-col bg-white rounded">
+							<div class="surface-card flex flex-col rounded-2xl">
 								<div
-									class="flex flex-row cursor-pointer flex-start p-4 items-center justify-between border-b"
+									class="hrms-border flex flex-row cursor-pointer flex-start items-center justify-between border-b p-4"
 									v-for="link in profileLinks"
 									:key="link.title"
 									@click="openInfoModal(link)"
@@ -54,42 +54,39 @@
 									<div class="flex flex-row items-center gap-3 grow">
 										<FeatherIcon
 											:name="link.icon"
-											class="h-5 w-5 text-gray-500"
+											class="h-5 w-5 hrms-text-muted"
 										/>
-										<div class="text-base font-normal text-gray-800">
+										<div class="text-base font-normal hrms-text">
 											{{ link.title }}
 										</div>
 									</div>
 									<FeatherIcon
 										name="chevron-right"
-										class="h-5 w-5 text-gray-500"
+										class="h-5 w-5 hrms-text-muted"
 									/>
 								</div>
 							</div>
 						</div>
 
 						<!-- Settings -->
-						<div
-							class="flex flex-col gap-5 my-4 w-full"
-							v-if="allowPushNotifications"
-						>
-							<div class="flex flex-col bg-white rounded">
+						<div class="flex flex-col gap-5 my-4 w-full">
+							<div class="surface-card flex flex-col rounded-2xl">
 								<router-link
 									:to="{ name: 'Settings' }"
-									class="flex flex-row cursor-pointer flex-start p-4 items-center justify-between border-b"
+									class="hrms-border flex flex-row cursor-pointer flex-start items-center justify-between border-b p-4"
 								>
 									<div class="flex flex-row items-center gap-3 grow">
 										<FeatherIcon
 											name="settings"
-											class="h-5 w-5 text-gray-500"
+											class="h-5 w-5 hrms-text-muted"
 										/>
-										<div class="text-base font-normal text-gray-800">
+										<div class="text-base font-normal hrms-text">
 											{{ __("Settings") }}
 										</div>
 									</div>
 									<FeatherIcon
 										name="chevron-right"
-										class="h-5 w-5 text-gray-500"
+										class="h-5 w-5 hrms-text-muted"
 									/>
 								</router-link>
 							</div>
@@ -146,8 +143,6 @@ import { showErrorAlert } from "@/utils/dialogs"
 import { formatCurrency } from "@/utils/formatters"
 
 import ProfileInfoModal from "@/components/ProfileInfoModal.vue"
-
-import { arePushNotificationsEnabled } from "@/data/notifications"
 
 const DOCTYPE = "Employee"
 
@@ -215,12 +210,6 @@ const profileLinks = [
 
 const isInfoModalOpen = ref(false)
 const selectedItem = ref(null)
-
-const allowPushNotifications = computed(
-	() =>
-		window.frappe?.boot.push_relay_server_url &&
-		arePushNotificationsEnabled.data
-)
 
 const openInfoModal = async (request) => {
 	selectedItem.value = request

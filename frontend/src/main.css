@@ -17,6 +17,11 @@ input::-webkit-date-and-time-value {
 
 body {
 	-webkit-tap-highlight-color: transparent;
+	background:
+		radial-gradient(circle at top left, rgba(16, 32, 144, 0.12), transparent 28%),
+		radial-gradient(circle at top right, rgba(240, 32, 48, 0.1), transparent 22%),
+		var(--hrms-background);
+	color: var(--hrms-text);
 }
 
 .hide-scrollbar::-webkit-scrollbar {
@@ -27,4 +32,75 @@ body {
 .hide-scrollbar {
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
+}
+
+html,
+body,
+#app,
+ion-app,
+ion-content {
+	background: var(--hrms-background);
+	color: var(--hrms-text);
+}
+
+.surface-page {
+	background: transparent;
+	color: var(--hrms-text);
+}
+
+.surface-header {
+	background: color-mix(in srgb, var(--hrms-surface) 92%, transparent);
+	border-color: var(--hrms-border);
+	color: var(--hrms-text);
+	backdrop-filter: blur(14px);
+}
+
+.surface-card {
+	background: var(--hrms-surface);
+	border: 1px solid var(--hrms-border);
+	box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+.surface-soft {
+	background: var(--hrms-surface-muted);
+	color: var(--hrms-text);
+}
+
+.hrms-text {
+	color: var(--hrms-text);
+}
+
+.hrms-text-muted {
+	color: var(--hrms-text-muted);
+}
+
+.hrms-border {
+	border-color: var(--hrms-border);
+}
+
+.hrms-primary-button {
+	background: var(--hrms-brand-blue) !important;
+	color: #ffffff !important;
+}
+
+.hrms-primary-button:hover,
+.hrms-primary-button:focus-visible {
+	background: var(--hrms-brand-blue-strong) !important;
+	color: #ffffff !important;
+}
+
+.hrms-select {
+	border: 1px solid var(--hrms-border);
+	border-radius: 0.85rem;
+	background: var(--hrms-surface);
+	color: var(--hrms-text);
+	padding: 0.65rem 2.5rem 0.65rem 0.9rem;
+	font-size: 0.95rem;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.hrms-select:focus {
+	outline: 2px solid color-mix(in srgb, var(--hrms-brand-blue) 40%, white);
+	outline-offset: 2px;
 }

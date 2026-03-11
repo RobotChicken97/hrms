@@ -1,27 +1,27 @@
 <template>
 	<ion-page>
-		<ion-content class="ion-padding">
-			<div class="flex flex-col h-screen w-screen">
+		<ion-content class="ion-padding surface-page">
+			<div class="surface-page flex flex-col h-screen w-screen">
 				<div class="w-full sm:w-96">
 					<header
-						class="flex flex-row bg-white shadow-sm py-4 px-3 items-center justify-between border-b sticky top-0 z-10"
+						class="surface-header sticky top-0 z-10 flex flex-row items-center justify-between border-b px-3 py-4 shadow-sm"
 					>
 						<div class="flex flex-row items-center">
 							<Button
 								variant="ghost"
-								class="!pl-0 hover:bg-white"
+								class="!pl-0"
 								@click="router.back()"
 							>
 								<FeatherIcon name="chevron-left" class="h-5 w-5" />
 							</Button>
-							<h2 class="text-xl font-semibold text-gray-900">{{ __("Notifications") }} </h2>
+							<h2 class="text-xl font-semibold hrms-text">{{ __("Notifications") }} </h2>
 						</div>
 					</header>
 
 					<div class="flex flex-col gap-4 mt-5 p-4">
 						<div class="flex flex-row justify-between items-center">
 							<div
-								class="text-lg text-gray-800 font-semibold"
+								class="text-lg font-semibold hrms-text"
 								v-if="unreadNotificationsCount.data"
 							>
 								{{ __("{0} Unread", [unreadNotificationsCount.data]) }}
@@ -52,14 +52,14 @@
 						</div>
 
 						<div
-							class="flex flex-col bg-white rounded"
+							class="surface-card flex flex-col rounded-2xl"
 							v-if="notifications.data?.length"
 						>
 							<router-link
 								:class="[
 									'flex flex-row items-start p-4 justify-between border-b before:mt-3',
 									`before:content-[''] before:mr-2 before:shrink-0 before:w-1.5 before:h-1.5 before:rounded-full`,
-									item.read ? 'bg-white-500' : 'before:bg-blue-500',
+									item.read ? 'hrms-border' : 'before:bg-[var(--hrms-brand-blue)] hrms-border',
 								]"
 								v-for="item in notifications.data"
 								:key="item.name"
@@ -69,10 +69,10 @@
 								<EmployeeAvatar :userID="item.from_user" size="lg" />
 								<div class="flex flex-col gap-0.5 grow ml-3">
 									<div
-										class="text-sm leading-5 font-normal text-gray-800"
+										class="text-sm leading-5 font-normal hrms-text"
 										v-html="item.message"
 									></div>
-									<div class="text-xs font-normal text-gray-500">
+									<div class="text-xs font-normal hrms-text-muted">
 										{{ dayjs(item.creation).fromNow() }}
 									</div>
 								</div>
