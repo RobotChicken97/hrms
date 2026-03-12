@@ -1,13 +1,13 @@
 <template>
 	<div
-		class="flex flex-col bg-white rounded mt-5 overflow-auto"
+		class="surface-card mt-5 flex flex-col overflow-auto rounded-[1.5rem]"
 		v-if="props.items?.length"
 	>
 		<router-link
 			v-for="link in props.items"
 			:key="link.name"
 			:to="{ name: 'EmployeeAdvanceDetailView', params: { id: link.name } }"
-			class="flex flex-row p-3.5 items-center justify-between border-b cursor-pointer"
+			class="hrms-border flex cursor-pointer flex-row items-center justify-between border-b p-3.5"
 		>
 			<EmployeeAdvanceItem :doc="link" />
 		</router-link>
@@ -16,8 +16,8 @@
 			:to="{ name: 'EmployeeAdvanceFormView' }"
 			v-slot="{ navigate }"
 		>
-			<div class="flex flex-col bg-white w-full py-5 px-3.5 mt-0 border-none">
-				<Button @click="navigate" variant="subtle" class="py-5 text-base">
+			<div class="surface-soft flex w-full flex-col px-3.5 py-5">
+				<Button @click="navigate" variant="solid" class="py-5 text-base hrms-primary-button">
 					{{ __("Request an Advance") }}
 				</Button>
 			</div>

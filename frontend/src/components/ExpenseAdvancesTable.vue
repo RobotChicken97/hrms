@@ -1,6 +1,6 @@
 <template>
 	<div class="flex flex-row justify-between items-center">
-		<h2 class="text-base font-semibold text-gray-800">
+		<h2 class="text-base font-semibold hrms-text">
 			{{ __("Settle against Advances") }}
 		</h2>
 	</div>
@@ -10,9 +10,9 @@
 		<div
 			v-for="advance in expenseClaim.advances"
 			:key="advance.name"
-			class="flex flex-col bg-white border shadow-sm rounded p-3.5"
+			class="surface-card flex flex-col rounded-[1.5rem] p-3.5"
 			:class="[
-				advance.selected ? 'border-gray-500' : '',
+				advance.selected ? '!border-[var(--hrms-brand-blue)]' : '',
 				isReadOnly ? '' : 'cursor-pointer',
 			]"
 			@click="toggleAdvanceSelection(advance)"
@@ -27,11 +27,11 @@
 					/>
 
 					<div class="flex flex-col items-start gap-1.5">
-						<div class="text-base font-semibold text-gray-800">
+						<div class="text-base font-semibold hrms-text">
 							{{ advance.purpose || advance.employee_advance }}
 						</div>
 						<div class="flex flex-row items-center gap-3 justify-between">
-							<div class="text-xs font-normal text-gray-500">
+							<div class="text-xs font-normal hrms-text-muted">
 								{{ __("{0}: {1}", [
 									__("Unclaimed Amount"),
 									formatCurrency(advance.unclaimed_amount, currency),
@@ -42,7 +42,7 @@
 				</div>
 
 				<div class="flex flex-row items-center gap-2">
-					<span class="text-normal">
+					<span class="hrms-text text-normal">
 						{{ currencySymbol }}
 					</span>
 					<Input

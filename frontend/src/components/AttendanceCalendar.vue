@@ -1,21 +1,23 @@
 <template>
 	<div class="flex flex-col w-full gap-5" v-if="calendarEvents.data">
-		<div class="text-lg text-gray-800 font-bold">{{ __("Attendance Calendar") }}</div>
+		<div class="text-lg font-bold hrms-text">{{ __("Attendance Calendar") }}</div>
 
-		<div class="flex flex-col gap-6 bg-white py-6 px-3.5 rounded-lg border-none">
+		<div class="surface-card flex flex-col gap-6 rounded-[1.5rem] px-3.5 py-6">
 			<!-- Month Change -->
 			<div class="flex flex-row justify-between items-center px-4">
 				<Button
 					icon="chevron-left"
 					variant="ghost"
+					class="hrms-text-muted"
 					@click="firstOfMonth = firstOfMonth.subtract(1, 'M')"
 				/>
-				<span class="text-lg text-gray-800 font-bold">
+				<span class="text-lg font-bold hrms-text">
 					{{ firstOfMonth.format("MMMM") }} {{ firstOfMonth.format("YYYY") }}
 				</span>
 				<Button
 					icon="chevron-right"
 					variant="ghost"
+					class="hrms-text-muted"
 					@click="firstOfMonth = firstOfMonth.add(1, 'M')"
 				/>
 			</div>
@@ -24,7 +26,7 @@
 			<div class="grid grid-cols-7 gap-y-3">
 				<div
 					v-for="day in DAYS"
-					class="flex justify-center text-gray-600 text-sm font-medium leading-6"
+					class="flex justify-center text-sm font-medium leading-6 hrms-text-muted"
 				>
 					{{ day }}
 				</div>
@@ -34,23 +36,23 @@
 						class="h-8 w-8 flex rounded-full mx-auto"
 						:class="getEventOnDate(index) && colorMap[getEventOnDate(index)]"
 					>
-						<span class="text-gray-800 text-sm font-medium m-auto">
+						<span class="text-sm font-medium m-auto hrms-text">
 							{{ index }}
 						</span>
 					</div>
 				</div>
 			</div>
 
-			<hr />
+			<hr class="hrms-border" />
 
 			<!-- Summary -->
 			<div class="grid grid-cols-4 mx-2">
 				<div v-for="status in summaryStatuses" class="flex flex-col gap-1">
 					<div class="flex flex-row gap-1 items-center">
 						<span class="rounded full h-3 w-3" :class="colorMap[status]" />
-						<span class="text-gray-600 text-sm font-medium leading-5"> {{ __(status) }} </span>
+						<span class="text-sm font-medium leading-5 hrms-text-muted"> {{ __(status) }} </span>
 					</div>
-					<span class="text-gray-800 text-base font-semibold leading-6 mx-auto">
+					<span class="text-base font-semibold leading-6 mx-auto hrms-text">
 						{{ summary[status] || 0 }}
 					</span>
 				</div>

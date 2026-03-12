@@ -12,13 +12,13 @@
 						<Button
 							@click="navigate"
 							variant="solid"
-							class="py-5 text-base w-full"
+							class="py-5 text-base w-full hrms-primary-button"
 						>
 							{{ __("Request a Leave") }}
 						</Button>
 					</router-link>
 					<div>
-						<div class="text-lg text-gray-800 font-bold">{{ __('Recent Leaves') }} </div>
+						<div class="text-lg font-bold hrms-text">{{ __('Recent Leaves') }} </div>
 						<RequestList
 							:component="markRaw(LeaveRequestItem)"
 							:items="myLeaves.data"

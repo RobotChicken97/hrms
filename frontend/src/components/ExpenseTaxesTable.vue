@@ -1,9 +1,9 @@
 <template>
 	<template v-if="expenseClaim.expenses">
 		<div class="flex flex-row justify-between items-center pt-4">
-			<h2 class="text-base font-semibold text-gray-800">{{ __("Taxes & Charges") }} </h2>
+			<h2 class="text-base font-semibold hrms-text">{{ __("Taxes & Charges") }} </h2>
 			<div class="flex flex-row gap-3 items-center">
-				<span class="text-base font-semibold text-gray-800">
+				<span class="text-base font-semibold hrms-text">
 					{{ formatCurrency(expenseClaim.total_taxes_and_charges, currency) }}
 				</span>
 				<Button
@@ -19,10 +19,10 @@
 
 		<div
 			v-if="expenseClaim.taxes?.length"
-			class="flex flex-col bg-white mt-5 rounded border overflow-auto"
+			class="surface-card mt-5 flex flex-col overflow-auto rounded-[1.5rem]"
 		>
 			<div
-				class="flex flex-row p-3.5 items-center justify-between border-b cursor-pointer"
+				class="hrms-border flex cursor-pointer flex-row items-center justify-between border-b p-3.5"
 				v-for="(item, idx) in expenseClaim.taxes"
 				:key="item.name"
 				@click="openModal(item, idx)"
@@ -31,10 +31,10 @@
 					<div class="flex flex-row items-center justify-between">
 						<div class="flex flex-row items-start gap-3 grow">
 							<div class="flex flex-col items-start gap-1.5">
-								<div class="text-base font-normal text-gray-800">
+								<div class="text-base font-normal hrms-text">
 									{{ item.account_head }}
 								</div>
-								<div class="text-xs font-normal text-gray-500">
+								<div class="text-xs font-normal hrms-text-muted">
 									<span> Rate: {{ formatCurrency(item.rate, currency) }} </span>
 									<span class="whitespace-pre"> &middot; </span>
 									<span class="whitespace-nowrap">
@@ -44,10 +44,10 @@
 							</div>
 						</div>
 						<div class="flex flex-row justify-end items-center gap-2">
-							<span class="text-gray-700 font-normal rounded text-base">
+							<span class="rounded text-base font-normal hrms-text">
 								{{ formatCurrency(item.total, currency) }}
 							</span>
-							<FeatherIcon name="chevron-right" class="h-5 w-5 text-gray-500" />
+							<FeatherIcon name="chevron-right" class="h-5 w-5 hrms-text-muted" />
 						</div>
 					</div>
 				</div>
@@ -59,10 +59,10 @@
 			<template #actionSheet>
 				<!-- Add Expense Tax Action Sheet -->
 				<div
-					class="bg-white w-full flex flex-col items-center justify-center pb-5"
+					class="surface-card hrms-text flex w-full flex-col items-center justify-center pb-5"
 				>
-					<div class="w-full pt-8 pb-5 border-b text-center">
-						<span class="text-gray-900 font-bold text-xl">
+					<div class="hrms-border w-full border-b pb-5 pt-8 text-center">
+						<span class="text-xl font-bold hrms-text">
 							{{ modalTitle }}
 						</span>
 					</div>
@@ -105,7 +105,7 @@
 							</Button>
 							<Button
 								variant="solid"
-								class="w-full py-5 text-sm disabled:bg-gray-700 disabled:text-white"
+								class="hrms-primary-button w-full py-5 text-sm disabled:bg-gray-700 disabled:text-white"
 								@click="updateExpenseTax()"
 								:disabled="addButtonDisabled"
 							>

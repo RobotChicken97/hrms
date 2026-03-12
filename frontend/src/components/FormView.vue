@@ -1,12 +1,12 @@
 <template>
 	<div class="flex flex-col h-full w-full" v-if="isFormReady">
-		<div class="w-full h-full bg-white sm:w-96 flex flex-col">
+		<div class="surface-card flex h-full w-full flex-col rounded-none sm:w-96">
 			<header
-				class="flex flex-row bg-white shadow-sm py-4 px-3 items-center sticky top-0 z-[1000]"
+				class="surface-header hrms-border sticky top-0 z-[1000] flex flex-row items-center border-b px-3 py-4 shadow-sm"
 			>
 				<Button
 					variant="ghost"
-					class="!pl-0 hover:bg-white"
+					class="!pl-0 hrms-text-muted hover:surface-soft"
 					@click="router.back()"
 				>
 					<FeatherIcon name="chevron-left" class="h-5 w-5" />
@@ -16,7 +16,7 @@
 					class="flex flex-row items-center gap-2 overflow-hidden grow"
 				>
 					<h2
-						class="text-xl font-semibold text-gray-900 whitespace-nowrap overflow-hidden text-ellipsis"
+						class="text-xl font-semibold whitespace-nowrap overflow-hidden text-ellipsis hrms-text"
 					>
 						{{ __(props.doctype) }}
 					</h2>
@@ -49,17 +49,17 @@
 						}"
 					/>
 				</div>
-				<h2 v-else class="text-2xl font-semibold text-gray-900">
+				<h2 v-else class="text-2xl font-semibold hrms-text">
 					{{ __('New {0}', [__(doctype)], props.doctype) }}
 				</h2>
 			</header>
 
 			<!-- Form -->
-			<div class="bg-white grow overflow-y-auto">
+			<div class="grow overflow-y-auto">
 				<!-- Tabs -->
 				<template v-if="tabbedView">
 					<div
-						class="px-4 sticky top-0 z-[100] bg-white text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700"
+						class="surface-header hrms-border sticky top-0 z-[100] border-b px-4 text-center text-sm font-medium hrms-text-muted"
 					>
 						<ul class="flex -mb-px overflow-auto hide-scrollbar">
 							<li class="mr-2 whitespace-nowrap" v-for="tab in tabs">
@@ -68,8 +68,8 @@
 									class="inline-block py-4 px-2 border-b-2 border-transparent rounded-t-lg"
 									:class="[
 										activeTab === tab.name
-											? '!text-gray-800 !border-gray-800'
-											: 'hover:text-gray-600 hover:border-gray-300',
+											? '!text-[var(--hrms-text)] !border-[var(--hrms-text)]'
+											: 'hover:!text-[var(--hrms-text)] hover:!border-[var(--hrms-border)]',
 									]"
 								>
 									{{ __(tab.name, null, props.doctype) }}
@@ -115,8 +115,8 @@
 								class="flex flex-row gap-2 items-center justify-center p-5"
 								v-if="isFileUploading"
 							>
-								<LoadingIndicator class="w-3 h-3 text-gray-800" />
-								<span class="text-gray-900 text-sm">{{ __("Uploading...") }} </span>
+								<LoadingIndicator class="h-3 w-3 hrms-text" />
+								<span class="text-sm hrms-text">{{ __("Uploading...") }} </span>
 							</div>
 
 							<FileUploaderView
@@ -154,8 +154,8 @@
 						class="flex flex-row gap-2 items-center justify-center p-5"
 						v-if="isFileUploading"
 					>
-						<LoadingIndicator class="w-3 h-3 text-gray-800" />
-						<span class="text-gray-900 text-sm">{{ __("Uploading...") }} </span>
+						<LoadingIndicator class="h-3 w-3 hrms-text" />
+						<span class="text-sm hrms-text">{{ __("Uploading...") }} </span>
 					</div>
 
 					<FileUploaderView
@@ -171,7 +171,7 @@
 			<!-- custom form button eg: Download button in salary slips -->
 			<div
 				v-if="!showFormButton"
-				class="px-4 pt-4 pb-4 standalone:pb-safe-bottom sm:w-96 bg-white sticky bottom-0 w-full drop-shadow-xl z-40 border-t rounded-t-lg"
+				class="surface-header hrms-border sticky bottom-0 z-40 w-full rounded-t-3xl border-t px-4 pb-4 pt-4 standalone:pb-safe-bottom sm:w-96"
 			>
 				<slot name="formButton"></slot>
 			</div>
@@ -187,7 +187,7 @@
 			<!-- save/submit/cancel -->
 			<div
 				v-else-if="isFormDirty || (!workflow?.hasWorkflow && formButton)"
-				class="px-4 pt-4 pb-4 standalone:pb-safe-bottom sm:w-96 bg-white sticky bottom-0 w-full drop-shadow-xl z-40 border-t rounded-t-lg"
+				class="surface-header hrms-border sticky bottom-0 z-40 w-full rounded-t-3xl border-t px-4 pb-4 pt-4 standalone:pb-safe-bottom sm:w-96"
 			>
 				<ErrorMessage
 					class="mb-2"
@@ -200,7 +200,7 @@
 
 				<Button
 					class="w-full rounded py-5 text-base disabled:bg-gray-700 disabled:text-white"
-					:class="formButton === 'Cancel' ? 'shadow' : ''"
+					:class="formButton === 'Cancel' ? 'shadow' : 'hrms-primary-button'"
 					@click="formButton === 'Save' ? saveForm() : submitOrCancelForm()"
 					:variant="formButton === 'Cancel' ? 'subtle' : 'solid'"
 					:loading="
@@ -269,7 +269,7 @@
 				<Button
 					variant="solid"
 					@click="handleDocUpdate('submit')"
-					class="py-5 w-full"
+					class="hrms-primary-button w-full py-5"
 				>
 					{{ __("Yes") }}
 				</Button>
@@ -300,7 +300,7 @@
 				<Button
 					variant="solid"
 					@click="handleDocUpdate('cancel')"
-					class="py-5 w-full"
+					class="hrms-primary-button w-full py-5"
 				>
 					{{ __("Yes") }}
 				</Button>

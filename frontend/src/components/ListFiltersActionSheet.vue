@@ -1,10 +1,10 @@
 <template>
 	<!-- Filter Action Sheet -->
 	<div
-		class="bg-white w-full flex flex-col items-center justify-center pb-5 max-h-[calc(100vh-5rem)]"
+		class="surface-card flex max-h-[calc(100vh-5rem)] w-full flex-col items-center justify-center pb-5"
 	>
-		<div class="w-full pt-8 pb-5 border-b text-center sticky top-0 z-[100]">
-			<span class="text-gray-900 font-bold text-lg">{{ __("Filters") }} </span>
+		<div class="hrms-border sticky top-0 z-[100] w-full border-b pb-5 pt-8 text-center">
+			<span class="text-lg font-bold hrms-text">{{ __("Filters") }} </span>
 		</div>
 
 		<div class="w-full p-4 overflow-auto">
@@ -19,7 +19,7 @@
 						class="flex flex-col gap-1.5"
 						v-if="['status', 'approval_status'].includes(filter.fieldname)"
 					>
-						<div class="text-gray-800 font-semibold text-base">
+						<div class="text-base font-semibold hrms-text">
 							{{ __(filter.label) }}
 						</div>
 						<div class="flex flex-row gap-2 mt-2 flex-wrap">
@@ -27,10 +27,10 @@
 								v-for="option in filter.options"
 								variant="outline"
 								@click="setStatusFilter(filter.fieldname, option)"
-								class="text-sm text-gray-800"
+								class="text-sm hrms-text"
 								:class="[
 									option === filters[filter.fieldname].value
-										? '!border !border-gray-800 !text-gray-900 !bg-gray-50 !font-medium'
+										? '!border hrms-border surface-soft !font-medium hrms-text'
 										: '!font-normal',
 								]"
 							>
@@ -41,7 +41,7 @@
 
 					<!-- Field filters -->
 					<div v-else class="flex flex-col gap-2">
-						<div class="text-gray-800 font-semibold text-base">
+						<div class="text-base font-semibold hrms-text">
 							{{ __(filter.label) }}
 						</div>
 						<div class="flex flex-row items-center gap-3">
@@ -66,7 +66,7 @@
 
 		<!-- Filter Buttons -->
 		<div
-			class="flex w-full flex-row items-center justify-between gap-3 sticky bottom-0 border-t p-4 z[100]"
+			class="hrms-border sticky bottom-0 z-[100] flex w-full flex-row items-center justify-between gap-3 border-t p-4"
 		>
 			<Button
 				@click="emit('clear-filters')"
@@ -78,7 +78,7 @@
 			<Button
 				@click="emit('apply-filters')"
 				variant="solid"
-				class="w-full py-5 text-sm"
+				class="w-full py-5 text-sm hrms-primary-button"
 			>
 				{{ __("Apply Filters") }}
 			</Button>
