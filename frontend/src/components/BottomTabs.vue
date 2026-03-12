@@ -1,7 +1,7 @@
 <template>
 	<ion-tab-bar
 		slot="bottom"
-		class="surface-header border-t shadow-md sm:w-96 py-2 pb-2 standalone:pb-safe-bottom"
+		class="hrms-tab-bar surface-header border-t shadow-md sm:w-96 py-2 pb-2 standalone:pb-safe-bottom"
 	>
 		<ion-tab-button
 			v-for="item in tabItems"
@@ -9,10 +9,10 @@
 			:tab="item.title"
 			:href="item.route"
 			:class="[
-				'text-xs space-y-1.5 rounded-xl px-1 !hover:text-[var(--hrms-brand-blue)] transition active:scale-95',
+				'hrms-tab-button text-xs space-y-1.5 rounded-xl px-1 transition active:scale-95',
 				route.path === item.route
-					? 'surface-soft text-[var(--hrms-brand-blue)] font-semibold'
-					: 'hrms-text-muted font-normal',
+					? 'hrms-tab-button-active font-semibold'
+					: 'font-normal',
 			]"
 		>
 			<component :is="item.icon" class="h-5 w-5" />

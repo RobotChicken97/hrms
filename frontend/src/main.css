@@ -66,6 +66,37 @@ ion-content {
 	color: var(--hrms-text);
 }
 
+.hrms-tab-bar {
+	--ion-tab-bar-background: color-mix(in srgb, var(--hrms-surface) 92%, transparent);
+	--ion-tab-bar-background-focused: var(--hrms-surface-muted);
+	--ion-tab-bar-border-color: var(--hrms-border);
+	--ion-tab-bar-color: var(--hrms-text-muted);
+	--ion-tab-bar-color-selected: var(--hrms-text);
+}
+
+.hrms-tab-button {
+	--background: color-mix(in srgb, var(--hrms-surface) 92%, transparent);
+	--background-focused: var(--hrms-surface-muted);
+	--color: var(--hrms-text-muted);
+	--color-focused: var(--hrms-text);
+	--color-selected: var(--hrms-text);
+	background: var(--background);
+	color: var(--hrms-text-muted);
+	border: 1px solid transparent;
+	backdrop-filter: blur(14px);
+}
+
+.hrms-tab-button-active,
+.hrms-tab-button.tab-selected {
+	--background: var(--hrms-surface-muted);
+	--color: var(--hrms-text);
+	--color-focused: var(--hrms-text);
+	--color-selected: var(--hrms-text);
+	background: var(--background);
+	color: var(--hrms-text);
+	border-color: var(--hrms-border);
+}
+
 .hrms-text {
 	color: var(--hrms-text);
 }
