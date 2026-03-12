@@ -4,9 +4,10 @@
 		preserveAspectRatio="xMidYMin slice"
 		class="h-[84px] w-[84px] -mt-10"
 	>
-		<circle cx="24" cy="24" r="9" fill="#fff"></circle>
+		<circle cx="24" cy="24" r="9" fill="var(--hrms-surface)"></circle>
 		<circle
-			class="stroke-current text-gray-200"
+			class="stroke-current"
+			style="color: color-mix(in srgb, var(--hrms-border) 78%, transparent)"
 			cx="24"
 			cy="24"
 			r="9"

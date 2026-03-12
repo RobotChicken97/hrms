@@ -27,7 +27,7 @@
 						:to="{ name: formViewRoute }"
 						v-slot="{ navigate }"
 					>
-						<Button variant="solid" class="mr-2" @click="navigate">
+						<Button variant="solid" class="mr-2 hrms-primary-button" @click="navigate">
 							<template #prefix>
 								<FeatherIcon name="plus" class="w-4" />
 							</template>
@@ -62,7 +62,7 @@
 					v-if="!documents.loading && documents.data?.length"
 				>
 					<div
-						class="p-3.5 items-center justify-between border-b cursor-pointer"
+						class="hrms-border cursor-pointer items-center justify-between border-b p-3.5"
 						v-for="link in documents.data"
 						:key="link.name"
 					>

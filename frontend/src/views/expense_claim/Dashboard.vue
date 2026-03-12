@@ -12,7 +12,7 @@
 						<Button
 							@click="navigate"
 							variant="solid"
-							class="w-full py-5 text-base"
+							class="w-full py-5 text-base hrms-primary-button"
 						>
 							{{ __("Claim an Expense") }}
 						</Button>
@@ -20,7 +20,7 @@
 				</div>
 
 				<div>
-					<div class="text-lg text-gray-800 font-bold">{{ __("Recent Expenses") }}</div>
+					<div class="text-lg font-bold hrms-text">{{ __("Recent Expenses") }}</div>
 					<RequestList
 						:component="markRaw(ExpenseClaimItem)"
 						:items="myClaims.data"
@@ -31,12 +31,12 @@
 
 				<div>
 					<div class="flex flex-row justify-between items-center">
-						<div class="text-lg text-gray-800 font-bold">
+						<div class="text-lg font-bold hrms-text">
 							{{ __("Employee Advance Balance") }}
 						</div>
 						<router-link
 							:to="{ name: 'EmployeeAdvanceListView' }"
-							class="text-sm text-gray-800 font-semibold cursor-pointer underline underline-offset-2"
+							class="text-sm font-semibold cursor-pointer underline underline-offset-2 hrms-text"
 						>
 							{{ __("View List") }}
 						</router-link>

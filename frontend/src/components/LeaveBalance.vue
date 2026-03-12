@@ -1,7 +1,7 @@
 <template>
 	<div class="flex flex-col w-full">
 		<div class="flex flex-row justify-between items-center px-4">
-			<div class="text-lg text-gray-800 font-bold">{{ __("Leave Balance") }} </div>
+			<div class="text-lg font-bold hrms-text">{{ __("Leave Balance") }} </div>
 			<router-link
 				:to="{ name: 'LeaveApplicationListView' }"
 				v-slot="{ navigate }"
@@ -9,7 +9,7 @@
 			>
 				<div
 					@click="navigate"
-					class="text-sm text-gray-800 font-semibold cursor-pointer underline underline-offset-2"
+					class="text-sm font-semibold cursor-pointer underline underline-offset-2 hrms-text"
 				>
 					{{ __("View Leave History") }}
 				</div>
@@ -24,16 +24,16 @@
 			<div
 				v-for="(allocation, leave_type, index) in leaveBalance.data"
 				:key="leave_type"
-				class="flex flex-col bg-white border-none rounded-lg drop-shadow-md gap-2 p-4 items-start first:ml-4"
+				class="surface-card first:ml-4 flex flex-col items-start gap-2 rounded-[1.5rem] p-4 shadow-none"
 			>
 				<SemicircleChart
 					:percentage="allocation.balance_percentage"
 					:colorClass="getChartColor(index)"
 				/>
-				<div class="text-gray-800 font-bold text-base">
+				<div class="text-base font-bold hrms-text">
 					{{ `${allocation.balance_leaves}/${allocation.allocated_leaves}` }}
 				</div>
-				<div class="text-gray-600 font-normal text-sm w-24 leading-4">
+				<div class="w-24 text-sm font-normal leading-4 hrms-text-muted">
 					{{ __("{0} balance", [__(leave_type, null, "Leave Type")]) }}
 				</div>
 			</div>

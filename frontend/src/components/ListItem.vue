@@ -10,7 +10,7 @@
 		</div>
 		<div v-if="props.isTeamRequest" class="flex flex-row items-center gap-2 pl-8">
 			<EmployeeAvatar :employeeID="props.employee" />
-			<div class="text-sm text-gray-600 grow">
+			<div class="grow text-sm hrms-text-muted">
 				{{ props.employeeName }}
 			</div>
 		</div>

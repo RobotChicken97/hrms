@@ -5,13 +5,17 @@
 				<AttendanceCalendar />
 				<div class="w-full">
 					<router-link :to="{ name: 'AttendanceRequestFormView' }" v-slot="{ navigate }">
-						<Button @click="navigate" variant="solid" class="w-full py-5 text-base">
+						<Button
+							@click="navigate"
+							variant="solid"
+							class="w-full py-5 text-base hrms-primary-button"
+						>
 							{{ __("Request Attendance") }}
 						</Button>
 					</router-link>
 				</div>
 				<div>
-					<div class="text-lg text-gray-800 font-bold">{{ __("Recent Attendance Requests") }}</div>
+					<div class="text-lg font-bold hrms-text">{{ __("Recent Attendance Requests") }}</div>
 					<RequestList
 						:component="markRaw(AttendanceRequestItem)"
 						:items="myAttendanceRequests?.data?.slice(0, 5)"
@@ -20,7 +24,7 @@
 					/>
 				</div>
 				<div>
-					<div class="text-lg text-gray-800 font-bold">{{ __("Upcoming Shifts") }}</div>
+					<div class="text-lg font-bold hrms-text">{{ __("Upcoming Shifts") }}</div>
 					<RequestList
 						:component="markRaw(ShiftAssignmentItem)"
 						:items="upcomingShifts"
@@ -31,13 +35,17 @@
 				</div>
 				<div class="w-full">
 					<router-link :to="{ name: 'ShiftRequestFormView' }" v-slot="{ navigate }">
-						<Button @click="navigate" variant="solid" class="w-full py-5 text-base">
+						<Button
+							@click="navigate"
+							variant="solid"
+							class="w-full py-5 text-base hrms-primary-button"
+						>
 							{{ __("Request a Shift") }}
 						</Button>
 					</router-link>
 				</div>
 				<div>
-					<div class="text-lg text-gray-800 font-bold">{{ __("Recent Shift Requests") }}</div>
+					<div class="text-lg font-bold hrms-text">{{ __("Recent Shift Requests") }}</div>
 					<RequestList
 						:component="markRaw(ShiftRequestItem)"
 						:items="myShiftRequests?.data?.slice(0, 5)"

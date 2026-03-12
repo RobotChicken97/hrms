@@ -1,8 +1,8 @@
 <template>
 	<!-- Header -->
 	<div class="flex flex-row justify-between items-center">
-		<h2 class="text-base font-semibold text-gray-800">{{ type }}</h2>
-		<span class="text-base font-semibold text-gray-800">
+		<h2 class="text-base font-semibold hrms-text">{{ type }}</h2>
+		<span class="text-base font-semibold hrms-text">
 			{{ total }}
 		</span>
 	</div>
@@ -10,19 +10,19 @@
 	<!-- Table -->
 	<div
 		v-if="items"
-		class="flex flex-col bg-white mt-5 rounded border overflow-auto"
+		class="surface-card mt-5 flex flex-col overflow-auto rounded-[1.5rem]"
 	>
 		<div
-			class="flex flex-row p-3.5 items-center justify-between border-b"
+			class="hrms-border flex flex-row items-center justify-between border-b p-3.5"
 			v-for="(item, idx) in items"
 			:key="idx"
 		>
 			<div
-				class="text-base font-normal whitespace-nowrap overflow-hidden text-ellipsis text-gray-800"
+				class="hrms-text overflow-hidden text-ellipsis whitespace-nowrap text-base font-normal"
 			>
 				{{ item.salary_component }}
 			</div>
-			<span class="text-gray-700 font-normal rounded text-base">
+			<span class="hrms-text rounded text-base font-normal">
 				{{ formatCurrency(item.amount, salarySlip.currency) }}
 			</span>
 		</div>

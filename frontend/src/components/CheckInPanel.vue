@@ -39,18 +39,18 @@
 		:initial-breakpoint="1"
 		:breakpoints="[0, 1]"
 	>
-		<div class="h-120 w-full flex flex-col items-center justify-center gap-5 p-4 mb-5">
+		<div class="surface-card hrms-text h-120 mb-5 flex w-full flex-col items-center justify-center gap-5 p-4">
 			<div class="flex flex-col gap-1.5 mt-2 items-center justify-center">
 				<div class="font-bold text-xl">
 					{{ dayjs(checkinTimestamp).format("hh:mm:ss a") }}
 				</div>
-				<div class="font-medium text-gray-500 text-sm">
+				<div class="hrms-text-muted text-sm font-medium">
 					{{ dayjs().format("D MMM, YYYY") }}
 				</div>
 			</div>
 
 			<template v-if="settings.data?.allow_geolocation_tracking">
-				<span v-if="locationStatus" class="font-medium text-gray-500 text-sm">
+				<span v-if="locationStatus" class="hrms-text-muted text-sm font-medium">
 					{{ locationStatus }}
 				</span>
 
@@ -69,7 +69,12 @@
 				</div>
 			</template>
 
-			<Button :loading="checkins.insert.loading" variant="solid" class="w-full py-5 text-sm disabled:bg-gray-700" @click="submitLog(nextAction.action)">
+			<Button
+				:loading="checkins.insert.loading"
+				variant="solid"
+				class="hrms-primary-button w-full py-5 text-sm disabled:bg-gray-700"
+				@click="submitLog(nextAction.action)"
+			>
 				{{ __("Confirm {0}", [nextAction.label]) }}
 			</Button>
 		</div>

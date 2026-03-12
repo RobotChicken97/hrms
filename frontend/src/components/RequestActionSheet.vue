@@ -1,19 +1,19 @@
 <template>
 	<div
 		v-if="document?.doc"
-		class="bg-white w-full flex flex-col items-center justify-center pb-5 max-h-[calc(100vh-5rem)]"
+		class="surface-card flex max-h-[calc(100vh-5rem)] w-full flex-col items-center justify-center pb-5"
 	>
 		<!-- Header -->
 		<div
-			class="w-full flex flex-row gap-2 pt-8 pb-5 border-b justify-center items-center sticky top-0 z-[100]"
+			class="hrms-border sticky top-0 z-[100] flex w-full flex-row items-center justify-center gap-2 border-b pb-5 pt-8"
 		>
-			<span class="text-gray-900 font-bold text-lg text-center">
+			<span class="text-lg font-bold text-center hrms-text">
 				{{ __(document?.doctype) }}
 			</span>
 			<FeatherIcon
 				v-if="props.showOpenForm"
 				name="external-link"
-				class="h-4 w-4 text-gray-500 cursor-pointer"
+				class="h-4 w-4 cursor-pointer hrms-text-muted"
 				@click="openFormView"
 			/>
 		</div>
@@ -33,7 +33,7 @@
 						'flex w-full',
 					]"
 				>
-					<div class="text-gray-600 text-base">{{ __(field.label, null, props.modelValue?.doctype) }}</div>
+					<div class="text-base hrms-text-muted">{{ __(field.label, null, props.modelValue?.doctype) }}</div>
 					<component
 						v-if="field.fieldtype === 'Table'"
 						:is="field.component"
@@ -52,15 +52,15 @@
 					class="flex flex-col gap-2 w-full"
 					v-if="attachedFiles?.data?.length"
 				>
-					<div class="text-gray-600 text-base">{{ __('Attachments') }}</div>
+					<div class="text-base hrms-text-muted">{{ __('Attachments') }}</div>
 					<ul class="w-full flex flex-col items-center gap-2">
 						<li
-							class="bg-gray-100 rounded p-2 w-full"
+							class="surface-soft w-full rounded p-2"
 							v-for="(file, index) in attachedFiles.data"
 							:key="index"
 						>
 							<div
-								class="flex flex-row items-center justify-between text-gray-700 text-sm"
+								class="hrms-text flex flex-row items-center justify-between text-sm"
 							>
 								<span class="grow" @click="showFilePreview(file)">
 									{{ file.file_name || file.name }}
@@ -82,7 +82,7 @@
 
 		<div
 			v-else-if="['Open', 'Draft'].includes(document?.doc?.[approvalField]) && hasPermission('approval')"
-			class="flex w-full flex-row items-center justify-between gap-3 sticky bottom-0 border-t z-[100] p-4"
+			class="hrms-border sticky bottom-0 z-[100] flex w-full flex-row items-center justify-between gap-3 border-t p-4"
 		>
 			<Button
 				@click="updateDocumentStatus({ status: 'Rejected' })"
@@ -116,11 +116,11 @@
 					['Approved', 'Rejected'].includes(document?.doc?.[approvalField])) &&
 				hasPermission('submit')
 			"
-			class="flex w-full flex-row items-center justify-between gap-3 sticky bottom-0 border-t z-[100] p-4"
+			class="hrms-border sticky bottom-0 z-[100] flex w-full flex-row items-center justify-between gap-3 border-t p-4"
 		>
 			<Button
 				@click="updateDocumentStatus({ docstatus: 1 })"
-				class="w-full py-5"
+				class="w-full py-5 hrms-primary-button"
 				variant="solid"
 			>
 				{{ __("Submit") }}
@@ -129,7 +129,7 @@
 
 		<div
 			v-else-if="document?.doc?.docstatus === 1 && hasPermission('cancel')"
-			class="flex w-full flex-row items-center justify-between gap-3 sticky bottom-0 border-t z-[100] p-4"
+			class="hrms-border sticky bottom-0 z-[100] flex w-full flex-row items-center justify-between gap-3 border-t p-4"
 		>
 			<Button
 				@click="updateDocumentStatus({ docstatus: 2 })"

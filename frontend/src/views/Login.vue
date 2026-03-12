@@ -70,7 +70,7 @@
 				</template>
 				<template #actions>
 					<a
-						class="inline-flex items-center justify-center gap-2 transition-colors focus:outline-none text-white bg-gray-900 hover:bg-gray-800 active:bg-gray-700 focus-visible:ring focus-visible:ring-gray-400 h-7 text-base px-2 rounded"
+						class="hrms-primary-button inline-flex h-7 items-center justify-center gap-2 rounded px-2 text-base transition-colors focus:outline-none focus-visible:ring focus-visible:ring-gray-400"
 						:href="resetPassword.link"
 						target="_blank"
 					>
@@ -100,7 +100,7 @@
 						<Button
 							:loading="session.otp.loading"
 							variant="solid"
-							class="disabled:bg-gray-700 disabled:text-white !mt-6"
+							class="!mt-6 disabled:bg-gray-700 disabled:text-white hrms-primary-button"
 						>
 							{{ __("Verify") }}
 						</Button>

@@ -3,14 +3,14 @@
 		v-if="actions.length > 0"
 		:class="[
 			props.view === 'form'
-				? 'px-4 pt-4 pb-4 standalone:pb-safe-bottom sm:w-96 bg-white sticky bottom-0 w-full drop-shadow-xl z-40 border-t rounded-t-lg'
-				: 'flex w-full flex-row items-center justify-between gap-3 sticky bottom-0 border-t z-[100] p-4',
+				? 'surface-header hrms-border sticky bottom-0 z-40 w-full rounded-t-3xl border-t px-4 pb-4 pt-4 standalone:pb-safe-bottom sm:w-96'
+				: 'hrms-border sticky bottom-0 z-[100] flex w-full flex-row items-center justify-between gap-3 border-t p-4',
 		]"
 	>
 		<Button
 			v-if="props.view === 'form' || actions.length > 2"
 			@click="showTransitions()"
-			class="w-full rounded py-5 text-base disabled:bg-gray-700 disabled:text-white"
+			class="w-full rounded py-5 text-base disabled:bg-gray-700 disabled:text-white hrms-primary-button"
 			variant="solid"
 		>
 			<template #prefix>
@@ -132,6 +132,6 @@ onMounted(() => getTransitions())
 
 <style scoped>
 ion-action-sheet {
-	--button-color: var(--text-gray-500);
+	--button-color: var(--hrms-text-muted);
 }
 </style>

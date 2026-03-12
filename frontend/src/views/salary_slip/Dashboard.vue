@@ -2,12 +2,12 @@
 	<BaseLayout :pageTitle="__('Salary Slips')">
 		<template #body>
 			<div class="flex flex-col items-center my-7 p-4">
-				<div class="flex flex-col w-full bg-white rounded py-5 px-3.5 gap-5">
+				<div class="surface-card flex flex-col w-full gap-5 rounded-[1.5rem] px-3.5 py-5">
 					<div v-if="lastSalarySlip && lastSalarySlip.year_to_date" class="flex flex-col w-full gap-1.5">
-						<span class="text-gray-600 text-sm font-medium leading-5">
+						<span class="text-sm font-medium leading-5 hrms-text-muted">
 							{{ __("Year To Date") }}
 						</span>
-						<span class="text-gray-800 text-xl font-bold leading-6">
+						<span class="text-xl font-bold leading-6 hrms-text">
 							{{
 								formatCurrency(
 									lastSalarySlip.year_to_date,
@@ -29,10 +29,10 @@
 				<div class="flex flex-col items-center mt-5 mb-7 w-full">
 					<div
 						v-if="documents.data?.length"
-						class="flex flex-col bg-white rounded mt-5 overflow-auto w-full"
+						class="surface-card mt-5 flex w-full flex-col overflow-auto rounded-[1.5rem]"
 					>
 						<div
-							class="p-3.5 items-center justify-between border-b cursor-pointer"
+							class="hrms-border cursor-pointer items-center justify-between border-b p-3.5"
 							v-for="link in documents.data"
 							:key="link.name"
 						>

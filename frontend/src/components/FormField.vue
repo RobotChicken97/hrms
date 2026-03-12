@@ -6,7 +6,7 @@
 			:class="[
 				// mark field as mandatory
 				props.reqd ? `after:content-['_*'] after:text-red-600` : ``,
-				`block text-sm leading-5 text-gray-700`,
+				`block text-sm leading-5 hrms-text-muted`,
 			]"
 		>
 			{{ props.label }}
@@ -57,7 +57,7 @@
 			@change="(v) => emit('change', v)"
 			v-bind="$attrs"
 			:disabled="isReadOnly"
-			class="rounded-sm text-gray-800"
+			class="rounded-sm hrms-text"
 		/>
 
 		<!-- Data field -->
@@ -100,7 +100,7 @@
 		>
 			<h2
 				v-if="props.label"
-				class="text-base font-semibold text-gray-800"
+				class="text-base font-semibold hrms-text"
 				:class="props.addSectionPadding ? 'pt-4' : ''"
 			>
 				{{ props.label }}

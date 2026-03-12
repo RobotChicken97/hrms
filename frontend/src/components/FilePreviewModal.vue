@@ -8,7 +8,7 @@
 		</ion-toolbar>
 	</ion-header>
 	<ion-content>
-		<div class="bg-white h-full w-full overflow-auto touch-pinch-zoom">
+		<div class="surface-card h-full w-full overflow-auto touch-pinch-zoom rounded-none border-none shadow-none">
 			<img v-if="isImageFile" :src="src" class="h-auto image-preview" />
 			<iframe v-else :src="src" class="w-full h-full"></iframe>
 		</div>
@@ -54,6 +54,12 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+ion-toolbar {
+	--background: var(--hrms-surface);
+	--color: var(--hrms-text);
+	--border-color: var(--hrms-border);
+}
+
 .image-preview {
 	image-orientation: from-image;
 }
