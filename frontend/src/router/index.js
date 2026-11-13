@@ -3,9 +3,6 @@ import { createRouter, createWebHistory } from "@ionic/vue-router"
 import TabbedView from "@/views/TabbedView.vue"
 import attendanceRoutes from "./attendance"
 import leaveRoutes from "./leaves"
-import claimRoutes from "./claims"
-import employeeAdvanceRoutes from "./advances"
-import salarySlipRoutes from "./salary_slips"
 
 const routes = [
 	{
@@ -34,16 +31,6 @@ const routes = [
 				path: "/dashboard/leaves",
 				name: "LeavesDashboard",
 				component: () => import("@/views/leave/Dashboard.vue"),
-			},
-			{
-				path: "/dashboard/expense-claims",
-				name: "ExpenseClaimsDashboard",
-				component: () => import("@/views/expense_claim/Dashboard.vue"),
-			},
-			{
-				path: "/dashboard/salary-slips",
-				name: "SalarySlipsDashboard",
-				component: () => import("@/views/salary_slip/Dashboard.vue"),
 			},
 		],
 	},
@@ -74,9 +61,16 @@ const routes = [
 	},
 	...attendanceRoutes,
 	...leaveRoutes,
-	...claimRoutes,
-	...employeeAdvanceRoutes,
-	...salarySlipRoutes,
+	// AmelaStock: Salary, Expense and Advance screens are not offered to staff. Their routes are not
+	// registered (see claims.js, advances.js and salary_slips.js, kept so a rebase stays small); a typed
+	// address goes back to Home.
+	...[
+		"/expense-claims",
+		"/employee-advances",
+		"/salary-slips",
+		"/dashboard/expense-claims",
+		"/dashboard/salary-slips",
+	].map((path) => ({ path: `${path}/:rest(.*)*`, redirect: "/home" })),
 ]
 
 const router = createRouter({
