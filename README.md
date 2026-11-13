@@ -75,3 +75,9 @@ Frappe HR has everything you need to drive excellence within the company. It's a
 GNU GPL V3. (See [license.txt](license.txt) for more information).
 
 The HR code is licensed as GNU General Public License (v3) and the copyright is owned by Frappe Technologies Pvt Ltd (Frappe) and Contributors.
+
+## AmelaStock fork notes
+
+This fork (`RobotChicken97/hrms`, branch `codex/amelastock-hr-pwa-branding` and its descendants) carries the Amela branding and the PWA edits below. When rebasing onto a new upstream `version-15` release, re-apply them and bump the version in `ops/stack-manifest.json` of the server repository.
+
+- Staff app (`/hrms`): the Salary, Expenses and Advance screens are removed. `frontend/src/components/BottomTabs.vue` and `frontend/src/views/Home.vue` no longer list them, and `frontend/src/router/index.js` no longer registers `claims.js`, `advances.js` or `salary_slips.js`; a typed address for them redirects to Home.
